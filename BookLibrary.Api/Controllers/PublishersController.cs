@@ -30,11 +30,8 @@ public class PublishersController(PublisherService publisherService) : Controlle
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddPublisher([FromBody] PublisherCreateDto dto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
         var id = await publisherService.AddPublisher(dto.Name);
-        return Created($"/publishers/{id}", new { id });
+        return CreatedAtAction(nameof(GetPublisher), new { id }, new { id });
     }
 
     [HttpPut("{id:int}")]
@@ -43,9 +40,6 @@ public class PublishersController(PublisherService publisherService) : Controlle
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdatePublisher([FromRoute] int id, [FromBody] PublisherCreateDto dto)
     {
-        if (!ModelState.IsValid) 
-            return BadRequest(ModelState);
-
         var success = await publisherService.UpdatePublisher(id, dto.Name);
         return success ? NoContent() : NotFound();
     }

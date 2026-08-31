@@ -30,11 +30,8 @@ public class AuthorsController(AuthorService authorService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddAuthor([FromBody] AuthorCreateDto dto)
     {
-        if (!ModelState.IsValid) 
-            return BadRequest(ModelState);
-
         var id = await authorService.AddAuthor(dto.Name);
-        return Created($"/authors/{id}", new { id });
+        return CreatedAtAction(nameof(GetAuthor), new { id }, new { id });
     }
 
     [HttpPut("{id:int}")]
@@ -43,9 +40,6 @@ public class AuthorsController(AuthorService authorService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateAuthor([FromRoute] int id, [FromBody] AuthorCreateDto dto)
     {
-        if (!ModelState.IsValid) 
-            return BadRequest(ModelState);
-
         var success = await authorService.UpdateAuthor(id, dto.Name);
         return success ? NoContent() : NotFound();
     }

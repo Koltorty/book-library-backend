@@ -30,11 +30,8 @@ public class SeriesController(SeriesService seriesService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddSeries([FromBody] SeriesCreateDto dto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
         var id = await seriesService.AddSeries(dto);
-        return Created($"/series/{id}", new { id });
+        return CreatedAtAction(nameof(GetSeries), new { id }, new { id });
     }
 
     [HttpPut("{id:int}")]
@@ -42,9 +39,6 @@ public class SeriesController(SeriesService seriesService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateSeries([FromRoute] int id, [FromBody] SeriesUpdateDto dto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
         var success = await seriesService.UpdateSeries(id, dto);
         return success ? NoContent() : NotFound();
     }

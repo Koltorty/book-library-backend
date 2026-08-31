@@ -173,7 +173,7 @@ public class BookService(IDbContextFactory<BookDbContext> factory)
         return book.Id;
     }
 
-    public async Task UpdateBook(int id, BookSaveDto dto)
+    public async Task<bool> UpdateBook(int id, BookSaveDto dto)
     {
         await using var db = await factory.CreateDbContextAsync();
 
@@ -184,7 +184,7 @@ public class BookService(IDbContextFactory<BookDbContext> factory)
             .FirstOrDefaultAsync(b => b.Id == id);
 
         if (book is null)
-            throw new InvalidOperationException("Book not found");
+            return false;
 
         book.Title = dto.Title;
         book.VolumeNumber = dto.VolumeNumber;
@@ -254,6 +254,7 @@ public class BookService(IDbContextFactory<BookDbContext> factory)
         }
 
         await db.SaveChangesAsync();
+        return true;
     }
 
     public async Task<bool> DeleteBook(int id)

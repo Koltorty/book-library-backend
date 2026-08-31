@@ -30,11 +30,8 @@ public class CategoriesController(CategoryService categoryService) : ControllerB
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddCategory([FromBody] CategoryCreateDto dto)
     {
-        if (!ModelState.IsValid) 
-            return BadRequest(ModelState);
-
         var id = await categoryService.AddCategory(dto.Name);
-        return Created($"/categories/{id}", new { id });
+        return CreatedAtAction(nameof(GetCategory), new { id }, new { id });
     }
 
     [HttpPut("{id:int}")]
@@ -43,9 +40,6 @@ public class CategoriesController(CategoryService categoryService) : ControllerB
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] CategoryCreateDto dto)
     {
-        if (!ModelState.IsValid) 
-            return BadRequest(ModelState);
-
         var success = await categoryService.UpdateCategory(id, dto.Name);
         return success ? NoContent() : NotFound();
     }

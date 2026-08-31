@@ -34,18 +34,8 @@ public class BooksController(BookService bookService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddBook([FromBody] BookSaveDto dto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        try
-        {
-            var id = await bookService.AddBook(dto);
-            return CreatedAtAction(nameof(GetBook), new { id }, new { id });
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(new { error = ex.Message });
-        }
+        var id = await bookService.AddBook(dto);
+        return CreatedAtAction(nameof(GetBook), new { id }, new { id });
     }
 
     [HttpPut("{id:int}")]
@@ -54,18 +44,8 @@ public class BooksController(BookService bookService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpdateBook([FromRoute] int id, [FromBody] BookSaveDto dto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        try
-        {
-            await bookService.UpdateBook(id, dto);
-            return NoContent();
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(new { error = ex.Message });
-        }
+        var success = await bookService.UpdateBook(id, dto);
+        return success ? NoContent() : NotFound();
     }
 
     [HttpDelete("{id:int}")]
