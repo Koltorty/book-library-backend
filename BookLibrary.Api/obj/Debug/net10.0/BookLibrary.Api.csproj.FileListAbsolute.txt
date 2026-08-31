@@ -127,3 +127,4 @@ C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Api\bin\Debug\net10.0\Swash
 C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Api\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Api\bin\Debug\net10.0\FluentValidation.dll
 C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Api\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Api\obj\Debug\net10.0\BookLibrary.Api.sourcelink.json

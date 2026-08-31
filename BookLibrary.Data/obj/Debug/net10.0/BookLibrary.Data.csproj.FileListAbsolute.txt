@@ -12,3 +12,4 @@ C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\refi
 C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.pdb
 C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.genruntimeconfig.cache
 C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\ref\BookLibrary.Data.dll
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.sourcelink.json
