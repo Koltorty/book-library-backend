@@ -1,1 +1,17 @@
-﻿/.idea/.idea.BookLibrary/.idea/vcs.xml
+﻿# .NET
+bin/
+obj/
+*.user
+*.suo
+*.sln.docstates
+
+# JetBrains / Rider
+.idea/
+*.DotSettings.user
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
