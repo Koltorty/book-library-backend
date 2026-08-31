@@ -1,0 +1,14 @@
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\bin\Debug\net10.0\BookLibrary.Data.deps.json
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\bin\Debug\net10.0\BookLibrary.Data.runtimeconfig.json
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\bin\Debug\net10.0\BookLibrary.Data.dll
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\bin\Debug\net10.0\BookLibrary.Data.pdb
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.csproj.AssemblyReference.cache
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.AssemblyInfoInputs.cache
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.AssemblyInfo.cs
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.csproj.CoreCompileInputs.cache
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.dll
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\refint\BookLibrary.Data.dll
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.pdb
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\BookLibrary.Data.genruntimeconfig.cache
+C:\Users\Owner\RiderProjects\BookLibrary\BookLibrary.Data\obj\Debug\net10.0\ref\BookLibrary.Data.dll
