@@ -14,14 +14,47 @@ public class SeriesService(IDbContextFactory<BookDbContext> factory)
 
         var roots = await db.Series
             .AsNoTracking()
-            .Where(s => s.ParentSeriesId == null && s.Books.Count > 0)
-            .Include(s => s.SubSeries)
+            .AsSplitQuery()
+            .Where(s => s.ParentSeriesId == null && s.Books.Any())
+            .OrderBy(s => s.Title)
+            .Select(s => new SeriesListItemDto
+            {
+                Id = s.Id,
+                Title = s.Title,
+                SubSeries = s.SubSeries
+                    .Where(ss => ss.Books.Any())
+                    .OrderBy(ss => ss.Title)
+                    .Select(ss => new SeriesListItemDto
+                    {
+                        Id = ss.Id,
+                        Title = ss.Title
+                    })
+                    .ToList()
+            })
+            .ToListAsync();
+
+        return roots;
+    }
+
+    public async Task<IReadOnlyList<SeriesListItemDto>> GetAllSeries(bool onlyActive)
+    {
+        await using var db = await factory.CreateDbContextAsync();
+
+        var query = db.Series.AsNoTracking();
+
+        if (onlyActive)
+            query = query.Where(s => s.Books.Any());
+
+        var all = await query
+            .Select(s => new SeriesListItemDto
+            {
+                Id = s.Id,
+                Title = s.Title
+            })
             .OrderBy(s => s.Title)
             .ToListAsync();
 
-        var result = roots.Select(MapToTreeItem).ToList();
-
-        return result;
+        return all;
     }
 
     public async Task<SeriesDetailDto?> GetSeries(int id)
@@ -108,21 +141,5 @@ public class SeriesService(IDbContextFactory<BookDbContext> factory)
         await db.SaveChangesAsync();
 
         return true;
-    }
-
-    private static SeriesListItemDto MapToTreeItem(Series series)
-    {
-        var subSeries = series.SubSeries
-            .Where(ss => ss.Books.Count > 0)
-            .OrderBy(ss => ss.Title)
-            .Select(MapToTreeItem)
-            .ToList();
-
-        return new SeriesListItemDto
-        {
-            Id = series.Id,
-            Title = series.Title,
-            SubSeries = subSeries
-        };
     }
 }

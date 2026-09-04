@@ -8,12 +8,16 @@ namespace BookLibrary.Api.Services;
 
 public class CategoryService(IDbContextFactory<BookDbContext> factory)
 {
-    public async Task<IReadOnlyList<CategoryDto>> GetCategories()
+    public async Task<IReadOnlyList<CategoryDto>> GetCategories(bool onlyActive)
     {
         await using var db = await factory.CreateDbContextAsync();
 
-        var categories = await db.Categories
-            .Where(c => c.Books.Any())
+        var query = db.Categories.AsNoTracking();
+
+        if (onlyActive)
+            query = query.Where(c => c.Books.Any());
+
+        var categories = await query
             .OrderBy(c => c.Name)
             .Select(c => new CategoryDto
             {

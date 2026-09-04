@@ -10,9 +10,9 @@ public class AuthorsController(AuthorService authorService) : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType<AuthorListItemDto[]>(StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAuthors()
+    public async Task<IActionResult> GetAuthors([FromQuery] bool onlyActive)
     {
-        var authors = await authorService.GetAuthors();
+        var authors = await authorService.GetAuthors(onlyActive);
         return Ok(authors);
     }
 

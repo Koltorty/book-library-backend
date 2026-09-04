@@ -16,6 +16,14 @@ public class SeriesController(SeriesService seriesService) : ControllerBase
         return Ok(series);
     }
 
+    [HttpGet("all")]
+    [ProducesResponseType<SeriesListItemDto[]>(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllSeries([FromQuery] bool onlyActive)
+    {
+        var series = await seriesService.GetAllSeries(onlyActive);
+        return Ok(series);
+    }
+
     [HttpGet("{id:int}")]
     [ProducesResponseType<SeriesDetailDto>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

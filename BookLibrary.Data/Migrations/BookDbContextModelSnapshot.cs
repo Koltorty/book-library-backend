@@ -136,12 +136,6 @@ namespace BookLibrary.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false)
-                        .HasColumnName("is_deleted");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -160,223 +154,186 @@ namespace BookLibrary.Data.Migrations
                         new
                         {
                             Id = 1,
-                            IsDeleted = false,
                             Name = "Биографии и мемуары"
                         },
                         new
                         {
                             Id = 2,
-                            IsDeleted = false,
                             Name = "Биология"
                         },
                         new
                         {
                             Id = 3,
-                            IsDeleted = false,
                             Name = "Культура и искусство"
                         },
                         new
                         {
                             Id = 4,
-                            IsDeleted = false,
                             Name = "Лженаука"
                         },
                         new
                         {
                             Id = 5,
-                            IsDeleted = false,
                             Name = "Математика"
                         },
                         new
                         {
                             Id = 6,
-                            IsDeleted = false,
                             Name = "Медицина и биология человека"
                         },
                         new
                         {
                             Id = 7,
-                            IsDeleted = false,
                             Name = "Политика и история"
                         },
                         new
                         {
                             Id = 8,
-                            IsDeleted = false,
                             Name = "Поп-культура и миры"
                         },
                         new
                         {
                             Id = 9,
-                            IsDeleted = false,
                             Name = "Саморазвитие и коммуникация"
                         },
                         new
                         {
                             Id = 10,
-                            IsDeleted = false,
                             Name = "Спорт"
                         },
                         new
                         {
                             Id = 11,
-                            IsDeleted = false,
                             Name = "Тру-крайм"
                         },
                         new
                         {
                             Id = 12,
-                            IsDeleted = false,
                             Name = "Физика"
                         },
                         new
                         {
                             Id = 13,
-                            IsDeleted = false,
                             Name = "Фольклор и мифология"
                         },
                         new
                         {
                             Id = 14,
-                            IsDeleted = false,
                             Name = "Экономика и статистика"
                         },
                         new
                         {
                             Id = 15,
-                            IsDeleted = false,
                             Name = "Алгоритмы"
                         },
                         new
                         {
                             Id = 16,
-                            IsDeleted = false,
                             Name = "Архитектура компьютера"
                         },
                         new
                         {
                             Id = 17,
-                            IsDeleted = false,
                             Name = "Операционные системы"
                         },
                         new
                         {
                             Id = 18,
-                            IsDeleted = false,
                             Name = "Компьютерные сети"
                         },
                         new
                         {
                             Id = 19,
-                            IsDeleted = false,
                             Name = "Computer Science (общее)"
                         },
                         new
                         {
                             Id = 20,
-                            IsDeleted = false,
                             Name = "Базы данных"
                         },
                         new
                         {
                             Id = 21,
-                            IsDeleted = false,
                             Name = "Компьютерная безопасность"
                         },
                         new
                         {
                             Id = 22,
-                            IsDeleted = false,
                             Name = "Инструменты"
                         },
                         new
                         {
                             Id = 23,
-                            IsDeleted = false,
                             Name = "Проектирование и архитектура"
                         },
                         new
                         {
                             Id = 24,
-                            IsDeleted = false,
                             Name = "Микросервисы"
                         },
                         new
                         {
                             Id = 25,
-                            IsDeleted = false,
                             Name = "ООП"
                         },
                         new
                         {
                             Id = 26,
-                            IsDeleted = false,
                             Name = "Паттерны проектирования"
                         },
                         new
                         {
                             Id = 27,
-                            IsDeleted = false,
                             Name = "Рефакторинг"
                         },
                         new
                         {
                             Id = 28,
-                            IsDeleted = false,
                             Name = "API"
                         },
                         new
                         {
                             Id = 29,
-                            IsDeleted = false,
                             Name = "System Design"
                         },
                         new
                         {
                             Id = 30,
-                            IsDeleted = false,
                             Name = "DDD и моделирование данных"
                         },
                         new
                         {
                             Id = 31,
-                            IsDeleted = false,
                             Name = "Саморазвитие в IT"
                         },
                         new
                         {
                             Id = 32,
-                            IsDeleted = false,
                             Name = "Тестирование"
                         },
                         new
                         {
                             Id = 33,
-                            IsDeleted = false,
                             Name = "C# и .NET"
                         },
                         new
                         {
                             Id = 34,
-                            IsDeleted = false,
                             Name = "Frontend"
                         },
                         new
                         {
                             Id = 35,
-                            IsDeleted = false,
                             Name = "Go"
                         },
                         new
                         {
                             Id = 36,
-                            IsDeleted = false,
                             Name = "TypeScript"
                         },
                         new
                         {
                             Id = 37,
-                            IsDeleted = false,
                             Name = "Художественная литература"
                         });
                 });
@@ -505,12 +462,6 @@ namespace BookLibrary.Data.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false)
-                        .HasColumnName("is_deleted");
 
                     b.Property<int?>("ParentSeriesId")
                         .HasColumnType("integer")

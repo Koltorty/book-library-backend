@@ -8,12 +8,16 @@ namespace BookLibrary.Api.Services;
 
 public class PublisherService(IDbContextFactory<BookDbContext> factory)
 {
-    public async Task<IReadOnlyList<PublisherListItemDto>> GetPublishers()
+    public async Task<IReadOnlyList<PublisherListItemDto>> GetPublishers(bool onlyActive)
     {
         await using var db = await factory.CreateDbContextAsync();
 
-        var publishers = await db.Publishers
-            .Where(p => p.Books.Any())
+        var query = db.Publishers.AsNoTracking();
+
+        if (onlyActive)
+            query = query.Where(p => p.Books.Any());
+
+        var publishers = await query
             .OrderBy(p => p.Name)
             .Select(p => new PublisherListItemDto
             {

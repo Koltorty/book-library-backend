@@ -19,11 +19,6 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
             .HasMaxLength(50)
             .HasColumnName("name");
 
-        builder.Property(x => x.IsDeleted)
-            .IsRequired()
-            .HasDefaultValue(false)
-            .HasColumnName("is_deleted");
-
         builder.HasIndex(x => x.Name)
             .IsUnique()
             .HasDatabaseName("ix_categories_name");

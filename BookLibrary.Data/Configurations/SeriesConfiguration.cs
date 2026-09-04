@@ -19,11 +19,6 @@ public class SeriesConfiguration : IEntityTypeConfiguration<Series>
             .HasMaxLength(50)
             .HasColumnName("title");
         
-        builder.Property(x => x.IsDeleted)
-            .IsRequired()
-            .HasDefaultValue(false)
-            .HasColumnName("is_deleted");
-
         builder.Property(x => x.ParentSeriesId)
             .IsRequired(false)
             .HasColumnName("parent_series_id");

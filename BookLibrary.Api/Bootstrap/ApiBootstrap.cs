@@ -1,5 +1,10 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using BookLibrary.Api.ExceptionHandling;
+using BookLibrary.Api.Serialization;
+using FluentValidation;
+using Microsoft.OpenApi.Models;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 namespace BookLibrary.Api.Bootstrap;
 
@@ -9,6 +14,35 @@ public static class ApiBootstrap
     {
         AddControllers(services);
         AddCors(services);
+        AddExceptionHandling(services);
+        AddValidators(services);
+        AddSwagger(services);
+    }
+
+    private static void AddValidators(IServiceCollection services)
+    {
+        services.AddValidatorsFromAssemblyContaining<Program>();
+        services.AddFluentValidationAutoValidation();
+    }
+
+    private static void AddSwagger(IServiceCollection services)
+    {
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "BookLibrary API",
+                Description = "API для управления библиотекой книг"
+            });
+        });
+    }
+
+    private static void AddExceptionHandling(IServiceCollection services)
+    {
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddProblemDetails();
     }
 
     private static void AddControllers(IServiceCollection services)
@@ -22,8 +56,6 @@ public static class ApiBootstrap
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 options.JsonSerializerOptions.Converters.Add(new DateOnlyConverter());
             });
-        
-        services.AddEndpointsApiExplorer();
     }
 
     private static void AddCors(IServiceCollection services)
@@ -37,18 +69,5 @@ public static class ApiBootstrap
                     .AllowAnyMethod();
             });
         });
-    }
-}
-
-public class DateOnlyConverter : JsonConverter<DateOnly>
-{
-    public override DateOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-    {
-        return DateOnly.Parse(reader.GetString()!);
-    }
-
-    public override void Write(Utf8JsonWriter writer, DateOnly value, JsonSerializerOptions options)
-    {
-        writer.WriteStringValue(value.ToString("O"));
     }
 }

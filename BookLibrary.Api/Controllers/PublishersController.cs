@@ -10,9 +10,9 @@ public class PublishersController(PublisherService publisherService) : Controlle
 {
     [HttpGet]
     [ProducesResponseType<PublisherListItemDto[]>(StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetPublishers()
+    public async Task<IActionResult> GetPublishers([FromQuery] bool onlyActive)
     {
-        var publishers = await publisherService.GetPublishers();
+        var publishers = await publisherService.GetPublishers(onlyActive);
         return Ok(publishers);
     }
 

@@ -10,9 +10,9 @@ public class CategoriesController(CategoryService categoryService) : ControllerB
 {
     [HttpGet]
     [ProducesResponseType<CategoryDto[]>(StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetCategories()
+    public async Task<IActionResult> GetCategories([FromQuery] bool onlyActive)
     {
-        var categories = await categoryService.GetCategories();
+        var categories = await categoryService.GetCategories(onlyActive);
         return Ok(categories);
     }
 
@@ -31,7 +31,7 @@ public class CategoriesController(CategoryService categoryService) : ControllerB
     public async Task<IActionResult> AddCategory([FromBody] CategoryCreateDto dto)
     {
         var id = await categoryService.AddCategory(dto.Name);
-        return CreatedAtAction(nameof(GetCategory), new { id }, new { id });
+        return CreatedAtAction(nameof(GetCategory), new {id}, new {id});
     }
 
     [HttpPut("{id:int}")]

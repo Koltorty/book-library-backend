@@ -8,12 +8,16 @@ namespace BookLibrary.Api.Services;
 
 public class AuthorService(IDbContextFactory<BookDbContext> factory)
 {
-    public async Task<IReadOnlyList<AuthorListItemDto>> GetAuthors()
+    public async Task<IReadOnlyList<AuthorListItemDto>> GetAuthors(bool onlyActive)
     {
         await using var db = await factory.CreateDbContextAsync();
 
-        var authors = await db.Authors
-            .Where(a => a.Works.Any())
+        var query = db.Authors.AsNoTracking();
+
+        if (onlyActive)
+            query = query.Where(a => a.Works.Any());
+
+        var authors = await query
             .OrderBy(a => a.Name)
             .Select(a => new AuthorListItemDto
             {

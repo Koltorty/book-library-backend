@@ -265,7 +265,8 @@ public class BookService(IDbContextFactory<BookDbContext> factory)
             .Include(b => b.Works)
             .FirstOrDefaultAsync(b => b.Id == id);
 
-        if (book is null) return false;
+        if (book is null) 
+            return false;
 
         book.IsDeleted = true;
 
@@ -285,7 +286,8 @@ public class BookService(IDbContextFactory<BookDbContext> factory)
             .Include(b => b.Works)
             .FirstOrDefaultAsync(b => b.Id == id);
 
-        if (book is null) return false;
+        if (book is null) 
+            return false;
 
         book.IsDeleted = false;
 

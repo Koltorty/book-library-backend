@@ -33,8 +33,7 @@ namespace BookLibrary.Data.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    is_deleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false)
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,7 +60,6 @@ namespace BookLibrary.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    is_deleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     parent_series_id = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
