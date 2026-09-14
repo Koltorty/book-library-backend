@@ -13,6 +13,7 @@ public class Book
     public bool HasBeenRead { get; set; }
     public DateOnly? DateRead { get; set; }
     public string? CoverImage { get; set; }
+    public string? Isbn { get; set; }
     public bool IsDeleted { get; set; }
 
     // Navigation Properties Keys

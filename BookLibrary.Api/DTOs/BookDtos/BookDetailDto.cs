@@ -13,6 +13,7 @@ public class BookDetailDto
     public bool HasBeenRead { get; set; }
     public DateOnly? DateRead { get; set; }
     public string? CoverImage { get; set; }
+    public string? Isbn { get; set; }
 
     public string? SeriesTitle { get; set; }
     public int? SeriesId { get; set; }

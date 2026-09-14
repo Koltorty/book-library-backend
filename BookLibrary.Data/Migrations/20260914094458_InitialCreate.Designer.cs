@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BookLibrary.Data.Migrations
 {
     [DbContext(typeof(BookDbContext))]
-    [Migration("20260902115759_InitialCreate")]
+    [Migration("20260914094458_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -82,6 +82,11 @@ namespace BookLibrary.Data.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("is_deleted");
+
+                    b.Property<string>("Isbn")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("isbn");
 
                     b.Property<int>("PagesCount")
                         .HasColumnType("integer")

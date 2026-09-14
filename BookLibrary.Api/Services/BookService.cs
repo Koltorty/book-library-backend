@@ -95,6 +95,7 @@ public class BookService(IDbContextFactory<BookDbContext> factory)
             HasBeenRead = book.HasBeenRead,
             DateRead = book.DateRead,
             CoverImage = book.CoverImage,
+            Isbn = book.Isbn,
             SeriesId = book.SeriesId,
             SeriesTitle = book.Series?.Title,
             PublisherId = book.PublisherId,
@@ -131,6 +132,7 @@ public class BookService(IDbContextFactory<BookDbContext> factory)
             HasBeenRead = dto.HasBeenRead,
             DateRead = dto.DateRead,
             CoverImage = dto.CoverImage,
+            Isbn = dto.Isbn,
             SeriesId = dto.SeriesId,
             PublisherId = dto.PublisherId
         };
@@ -194,6 +196,7 @@ public class BookService(IDbContextFactory<BookDbContext> factory)
         book.HasBeenRead = dto.HasBeenRead;
         book.DateRead = dto.DateRead;
         book.CoverImage = dto.CoverImage;
+        book.Isbn = dto.Isbn;
         book.SeriesId = dto.SeriesId;
         book.PublisherId = dto.PublisherId;
 

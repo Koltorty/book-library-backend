@@ -87,6 +87,7 @@ namespace BookLibrary.Data.Migrations
                     has_been_read = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     date_read = table.Column<DateOnly>(type: "date", nullable: true),
                     cover_image = table.Column<string>(type: "text", nullable: true),
+                    isbn = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     is_deleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     series_id = table.Column<int>(type: "integer", nullable: true),
                     publisher_id = table.Column<int>(type: "integer", nullable: false)

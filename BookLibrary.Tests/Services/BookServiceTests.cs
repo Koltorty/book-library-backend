@@ -22,6 +22,7 @@ public class BookServiceTests : ServiceTestBase
             HasBeenRead = true,
             DateRead = new DateOnly(2025, 1, 15),
             VolumeNumber = 1,
+            Isbn = "978-5-389-13012-8",
             PublisherId = publisherId,
             CategoryIds = [categoryId],
             Works =
@@ -48,6 +49,7 @@ public class BookServiceTests : ServiceTestBase
         Assert.True(book.HasBeenRead);
         Assert.Equal(new DateOnly(2025, 1, 15), book.DateRead);
         Assert.Equal(1, book.VolumeNumber);
+        Assert.Equal("978-5-389-13012-8", book.Isbn);
         Assert.Equal(publisherId, book.PublisherId);
         Assert.Equal("AST", book.PublisherName);
 

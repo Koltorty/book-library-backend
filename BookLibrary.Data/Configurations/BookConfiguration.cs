@@ -49,7 +49,11 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
 
         builder.Property(x => x.CoverImage)
             .HasColumnName("cover_image");
-        
+
+        builder.Property(x => x.Isbn)
+            .HasMaxLength(20)
+            .HasColumnName("isbn");
+
         builder.Property(x => x.IsDeleted)
             .IsRequired()
             .HasDefaultValue(false)

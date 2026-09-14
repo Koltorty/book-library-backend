@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.Extensions.Logging;
 
 namespace BookLibrary.Api.ExceptionHandling;
 

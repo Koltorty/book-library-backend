@@ -12,6 +12,7 @@ public class BookSaveDto
     public bool HasBeenRead { get; set; }
     public DateOnly? DateRead { get; set; }
     public string? CoverImage { get; set; }
+    public string? Isbn { get; set; }
     public int? SeriesId { get; set; }
     public int PublisherId { get; set; }
     public IReadOnlyList<int> CategoryIds { get; set; } = [];
