@@ -4,7 +4,6 @@ using BookLibrary.Api.DTOs.CategoryDtos;
 using BookLibrary.Api.DTOs.Common;
 using BookLibrary.Data;
 using BookLibrary.Data.Entities;
-using BookLibrary.Data.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookLibrary.Api.Services;
@@ -107,7 +106,9 @@ public class BookService(IDbContextFactory<BookDbContext> factory)
                     Id = w.Id,
                     Title = w.Title,
                     Order = w.Order,
-                    Authors = w.Authors.Select(a => a.Name).ToList()
+                    Authors = w.Authors
+                        .Select(a => new AuthorListItemDto { Id = a.Id, Name = a.Name })
+                        .ToList()
                 })
                 .ToList(),
             Categories = book.Categories

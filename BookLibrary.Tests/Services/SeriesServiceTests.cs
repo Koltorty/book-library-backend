@@ -16,7 +16,7 @@ public class SeriesServiceTests : ServiceTestBase
         // Assert
         Assert.Equal(firstId, secondId);
 
-        var series = await _seriesService.GetAllSeries(onlyActive: false);
+        var series = await _seriesService.GetSeries(onlyActive: false);
         Assert.Single(series);
     }
 
@@ -64,7 +64,7 @@ public class SeriesServiceTests : ServiceTestBase
         });
 
         // Act
-        var tree = await _seriesService.GetSeries();
+        var tree = await _seriesService.GetSeries(onlyActive: true);
 
         // Assert
         var root = Assert.Single(tree);
@@ -74,5 +74,9 @@ public class SeriesServiceTests : ServiceTestBase
         var sub = Assert.Single(root.SubSeries);
         Assert.Equal(subWithBookId, sub.Id);
         Assert.Equal("Season of Mists", sub.Title);
+
+        var full = await _seriesService.GetSeries(onlyActive: false);
+        Assert.Equal(2, full.Count);
+        Assert.Equal(2, full.First(s => s.Id == rootId).SubSeries.Count);
     }
 }

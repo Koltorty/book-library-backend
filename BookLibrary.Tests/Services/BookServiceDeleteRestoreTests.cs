@@ -69,7 +69,7 @@ public class BookServiceDeleteRestoreTests : ServiceTestBase
 
         var work = Assert.Single(book.Works);
         Assert.Equal("War and Peace", work.Title);
-        Assert.Equal("Leo Tolstoy", Assert.Single(work.Authors));
+        Assert.Equal("Leo Tolstoy", Assert.Single(work.Authors).Name);
 
         var books = await _bookService.GetBooks();
         Assert.Equal(1, books.TotalCount);
@@ -126,7 +126,7 @@ public class BookServiceDeleteRestoreTests : ServiceTestBase
 
         var secondBook = await _bookService.GetBook(secondBookId);
         Assert.NotNull(secondBook);
-        Assert.Equal("Ivan Ivanov", Assert.Single(secondBook!.Works).Authors.Single());
+        Assert.Equal("Ivan Ivanov", Assert.Single(secondBook!.Works).Authors.Single().Name);
 
         var allAfter = await _authorService.GetAuthors(onlyActive: false);
         Assert.Single(allAfter);

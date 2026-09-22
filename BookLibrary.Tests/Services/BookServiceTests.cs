@@ -56,7 +56,7 @@ public class BookServiceTests : ServiceTestBase
         var work = Assert.Single(book.Works);
         Assert.Equal("War and Peace", work.Title);
         Assert.Equal(1, work.Order);
-        Assert.Equal("Leo Tolstoy", Assert.Single(work.Authors));
+        Assert.Equal("Leo Tolstoy", Assert.Single(work.Authors).Name);
 
         var bookCategory = Assert.Single(book.Categories);
         Assert.Equal("Fiction", bookCategory.Name);
@@ -95,7 +95,7 @@ public class BookServiceTests : ServiceTestBase
         Assert.Equal(1, book.Works[0].Order);
         Assert.Equal("Part Two", book.Works[1].Title);
         Assert.Equal(2, book.Works[1].Order);
-        Assert.All(book.Works, w => Assert.Equal("Mikhail Bulgakov", Assert.Single(w.Authors)));
+        Assert.All(book.Works, w => Assert.Equal("Mikhail Bulgakov", Assert.Single(w.Authors).Name));
     }
 
     [Fact]
@@ -132,8 +132,8 @@ public class BookServiceTests : ServiceTestBase
         var book = await _bookService.GetBook(bookId);
         Assert.NotNull(book);
         var work = Assert.Single(book.Works);
-        Assert.Contains("Ilf", work.Authors);
-        Assert.Contains("Petrov", work.Authors);
+        Assert.Contains("Ilf", work.Authors.Select(a => a.Name));
+        Assert.Contains("Petrov", work.Authors.Select(a => a.Name));
         Assert.Equal(2, work.Authors.Count);
     }
 
@@ -186,14 +186,14 @@ public class BookServiceTests : ServiceTestBase
 
         Assert.Equal("The Queen of Spades", book.Works[0].Title);
         Assert.Equal(1, book.Works[0].Order);
-        Assert.Equal("Alexander Pushkin", Assert.Single(book.Works[0].Authors));
+        Assert.Equal("Alexander Pushkin", Assert.Single(book.Works[0].Authors).Name);
 
         Assert.Equal("The Overcoat", book.Works[1].Title);
         Assert.Equal(2, book.Works[1].Order);
-        Assert.Equal("Nikolai Gogol", Assert.Single(book.Works[1].Authors));
+        Assert.Equal("Nikolai Gogol", Assert.Single(book.Works[1].Authors).Name);
 
         Assert.Equal("Ruslan and Ludmila", book.Works[2].Title);
         Assert.Equal(3, book.Works[2].Order);
-        Assert.Equal("Alexander Pushkin", Assert.Single(book.Works[2].Authors));
+        Assert.Equal("Alexander Pushkin", Assert.Single(book.Works[2].Authors).Name);
     }
 }

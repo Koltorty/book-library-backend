@@ -12,6 +12,7 @@ public class BookSaveDtoValidatorTests
     {
         Title = "War and Peace",
         Type = BookType.Paper,
+        CoverType = BookCoverType.HardCover,
         PagesCount = 1225,
         PublisherId = 1,
         CategoryIds = [1],
@@ -137,18 +138,17 @@ public class BookSaveDtoValidatorTests
     }
 
     [Fact]
-    public async Task Validate_WithWorkWithoutAuthors_ShouldFail()
+    public async Task Validate_WithWorkWithoutAuthors_ShouldSucceed()
     {
         // Arrange
         var dto = CreateValidDto();
-        dto.Works = [new SaveWorkDto { Title = "War and Peace", Order = 1, AuthorIds = [] }];
+        dto.Works = [new SaveWorkDto { Title = "One Thousand and One Nights", Order = 1, AuthorIds = [] }];
 
         // Act
         var result = await _validator.ValidateAsync(dto);
 
         // Assert
-        Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, e => e.ErrorMessage == "At least one author is required");
+        Assert.True(result.IsValid);
     }
 
     [Fact]

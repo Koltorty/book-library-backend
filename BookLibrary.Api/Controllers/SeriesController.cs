@@ -10,17 +10,9 @@ public class SeriesController(SeriesService seriesService) : ControllerBase
 {
     [HttpGet]
     [ProducesResponseType<SeriesListItemDto[]>(StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetSeries()
+    public async Task<IActionResult> GetSeries([FromQuery] bool onlyActive)
     {
-        var series = await seriesService.GetSeries();
-        return Ok(series);
-    }
-
-    [HttpGet("all")]
-    [ProducesResponseType<SeriesListItemDto[]>(StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAllSeries([FromQuery] bool onlyActive)
-    {
-        var series = await seriesService.GetAllSeries(onlyActive);
+        var series = await seriesService.GetSeries(onlyActive);
         return Ok(series);
     }
 

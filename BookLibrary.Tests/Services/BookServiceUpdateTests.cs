@@ -113,7 +113,7 @@ public class BookServiceUpdateTests : ServiceTestBase
         var work = Assert.Single(book.Works);
         Assert.Equal(workId, work.Id);
         Assert.Equal("Crime and Punishment", work.Title);
-        Assert.Equal("Fyodor Dostoevsky", Assert.Single(work.Authors));
+        Assert.Equal("Fyodor Dostoevsky", Assert.Single(work.Authors).Name);
 
         var category = Assert.Single(book.Categories);
         Assert.Equal("Science", category.Name);
